@@ -1,0 +1,95 @@
+
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>اسم فامیل</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            text-align: center;
+            background-color: #f0f8ff;
+            direction: rtl;
+            padding: 20px;
+        }
+        h1 {
+            color: #2c3e50;
+        }
+        table {
+            width: 100%;
+            max-width: 500px;
+            margin: auto;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 8px;
+        }
+        th {
+            background-color: #e0f7fa;
+        }
+        input {
+            width: 100%;
+            padding: 5px;
+            box-sizing: border-box;
+        }
+        button {
+            padding: 10px 20px;
+            margin-top: 10px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+    <h1>بازی اسم فامیل</h1>
+    <h2 id="letter">حرف: ?</h2>
+    <button onclick="generateLetter()">انتخاب حرف تصادفی</button>
+    <form id="gameForm">
+        <table>
+            <tr>
+                <th>اسم</th>
+                <th>فامیل</th>
+                <th>کشور</th>
+                <th>غذا</th>
+                <th>حیوان</th>
+            </tr>
+            <tr>
+                <td><input type="text" name="name"></td>
+                <td><input type="text" name="family"></td>
+                <td><input type="text" name="country"></td>
+                <td><input type="text" name="food"></td>
+                <td><input type="text" name="animal"></td>
+            </tr>
+        </table>
+        <button type="button" onclick="calculateScore()">محاسبه امتیاز</button>
+    </form>
+    <h2 id="score"></h2>
+
+    <script>
+        const letters = "آابپتثجچحخدذرزژسشصضطظعغفقکگلمنوهی";
+        function generateLetter() {
+            const rand = letters[Math.floor(Math.random() * letters.length)];
+            document.getElementById("letter").innerText = "حرف: " + rand;
+        }
+
+        function calculateScore() {
+            const inputs = document.querySelectorAll("#gameForm input");
+            let score = 0;
+            inputs.forEach(input => {
+                if (input.value.trim().length >= 2) {
+                    score += 10;
+                }
+            });
+            document.getElementById("score").innerText = "امتیاز شما: " + score;
+        }
+    </script>
+</body>
+</html>
